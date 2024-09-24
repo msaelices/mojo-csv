@@ -30,12 +30,10 @@ This software is in a early stage of development, using the Mojo nightly version
 ```mojo
 from csv import reader
 
-def main():
+fn main():
     with open('data.csv', 'r') as file:
         csv_reader = reader(file, delimiter=',', quotechar='"', doublequote=True)
-        i = 0
         for row in csv_reader:
-            i += 1
             print(','.join(row))
 ```
 
