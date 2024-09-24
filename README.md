@@ -42,6 +42,7 @@ def main():
 ## TODO
 
 - [ ] CSV writing
+- [ ] Optimizations leveraging SIMD
 
 ## Contributing
 
