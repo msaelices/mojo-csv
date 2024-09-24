@@ -1,6 +1,6 @@
 [project]
 authors = ["Manuel Saelices <msaelices@gmail.com>"]
-channels = ["conda-forge", "https://conda.modular.com/max"]
+channels = ["conda-forge", "https://conda.modular.com/max-nightly"]
 description = "CSV files that adheres closely to the Python standard library's csv module"
 name = "mojo-csv"
 platforms = ["linux-64"]
