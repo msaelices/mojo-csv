@@ -1,5 +1,8 @@
 # mojo-csv
 
+   ![Written in Mojo][language-shield]
+   [![MIT License][license-shield]][license-url]
+
 `mojo-csv` is a lightweight library for parsing and writing CSV files that adheres closely to the Python standard library's `csv` module. It aims to provide an intuitive and familiar interface with additional features for enhanced usability.
 
 ## Features
