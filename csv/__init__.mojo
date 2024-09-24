@@ -20,4 +20,4 @@ Example:
     ['1', '2', '3']
 """
 
-from .reader import Dialect, Reader
+from .rd import Dialect, reader

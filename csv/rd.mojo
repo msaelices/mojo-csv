@@ -70,7 +70,7 @@ struct Dialect:
         self._valid = _validate_reader_dialect(self)
 
 
-struct Reader:
+struct reader:
     """
     CSV reader.
 
@@ -171,7 +171,7 @@ struct _ReaderIter[
 ](Sized):
     """Iterator for any random-access container"""
 
-    var reader_ref: Reference[Reader, reader_lifetime]
+    var reader_ref: Reference[reader, reader_lifetime]
     var pos: Int
     var field_pos: Int
     var quoted: Bool
@@ -184,7 +184,7 @@ struct _ReaderIter[
     var content_ptr: UnsafePointer[UInt8]
     var bytes_len: Int
 
-    fn __init__(inout self, ref [reader_lifetime]reader: Reader):
+    fn __init__(inout self, ref [reader_lifetime]reader: reader):
         self.reader_ref = reader
         self.pos = 0
         self.field_pos = 0
