@@ -12,6 +12,23 @@
 - **Data Validation**: Includes optional data validation during parsing.
 - **Compatibility**: API similar to Python's `csv` module for easy transition and minimal learning curve.
 
+## Example of usage
+
+```mojo
+from csv import reader
+
+def main():
+    with open('data.csv', 'r') as file:
+        csv_reader = reader(file, delimiter=',', quotechar='"', doublequote=True)
+        i = 0
+        for row in csv_reader:
+            i += 1
+            print(','.join(row))
+
+if __name__ == '__main__':
+    main()
+```
+
 ## TODO
 
 - [ ] CSV writing
