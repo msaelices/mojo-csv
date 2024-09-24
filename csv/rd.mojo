@@ -167,7 +167,7 @@ alias QUOTE_IN_QUOTED_FIELD = 8
 
 struct _ReaderIter[
     reader_mutability: Bool, //,
-    reader_lifetime: AnyLifetime[reader_mutability].type,
+    reader_lifetime: Lifetime[reader_mutability].type,
 ](Sized):
     """Iterator for any random-access container"""
 
