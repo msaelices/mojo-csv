@@ -20,10 +20,8 @@ This software is in a early stage of development, using the Mojo nightly version
 2. **Add the CSV Package** (at the top level of your project):
 
     ```bash
-    curl -o "csv.mojopkg" https://raw.githubusercontent.com/msaelices/mojo-csv/main/csv.mojopkg
+    magic add csv
     ```
-
-    <!-- > *<span style="color: green;">**Note:**</span> In the near future, you will be able to simply call `magic add csv`, which will manage this dependency in your project's environment automatically. QOL is in sight!* -->
 
 ## Example of usage
 
