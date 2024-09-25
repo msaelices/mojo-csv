@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+context:
+  version: "0.1.0"
+
+package:
+  name: "mojo-csv"
+  version: 0.1.3
+
+source:
+  - path: ../csv
+  - path: ../LICENSE
+
+build:
+  script:
+    - magic run mojo package csv -o ${PREFIX}/csv.mojopkg
+
+requirements:
+  run:
+    - max >=24.5.0
+
+about:
+  homepage: https://github.com/msaelices/mojo-csv
+  license: MIT
+  license_file: LICENSE
+  summary: Mojo CSV is a library to read and write CSV files in Mojo that adheres to the Python csv stdlib package.
+  repository: https://github.com/msaelices/mojo-csv
