@@ -8,7 +8,7 @@ package:
   version: 0.1.3
 
 source:
-  - path: ../csv
+  - path: ../src
   - path: ../LICENSE
 
 build:
