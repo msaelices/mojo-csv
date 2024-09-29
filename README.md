@@ -37,6 +37,7 @@ fn main():
 
 ## TODO
 
+- [ ] Iterations instead of loading the whole file into memory
 - [ ] CSV writing
 - [ ] Optimizations leveraging SIMD
 
