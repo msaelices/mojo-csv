@@ -1,6 +1,6 @@
-#from tests.test_xx import test_xx
+from tests.test_reader import test_reader, test_dialect
 
 
 fn main() raises:
-    pass
-    #test_xx()
+    test_dialect()
+    test_reader()
