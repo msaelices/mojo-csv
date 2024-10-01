@@ -1,16 +1,7 @@
 from csv import reader, Dialect
 from testing import assert_equal, assert_raises
 from pathlib import Path, _dir_of_current_file
-
-
-fn assert_line_equal(lhs: List[String], rhs: List[String]) raises:
-    if not lhs == rhs:
-        raise Error(
-            "AssertionError: value "
-            + lhs.__repr__()
-            + " not equal to "
-            + rhs.__repr__()
-        )
+from .utils import assert_line_equal
 
 
 def test_dialect():
