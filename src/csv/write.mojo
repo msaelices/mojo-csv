@@ -15,10 +15,10 @@ struct writer:
 
     Example:
 
-        >>> with open("example.csv", "w") as csvfile:
-        ...     writer = csv.writer(csvfile, delimiter=",", quotechar='"')
-        ...     writer.writerow(["a", "b", "c"])
-        ...     writer.writerow(["1", "2", "3"])
+        >>> csvfile = open("example.csv", "w")
+        >>> writer = csv.writer(csvfile^, delimiter=",", quotechar='"')
+        >>> writer.writerow(["a", "b", "c"])
+        >>> writer.writerow(["1", "2", "3"])
     """
 
     var dialect: Dialect
