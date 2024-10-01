@@ -66,3 +66,45 @@ struct Dialect:
         Validate the dialect.
         """
         self._valid = _validate_reader_dialect(self)
+
+
+fn _validate_reader_dialect(dialect: Dialect) raises -> Bool:
+    """
+    Validate a dialect.
+
+    Args:
+        dialect: A Dialect object.
+
+    Returns:
+        True if the dialect is valid, False if not.
+    """
+    if len(dialect.delimiter) != 1:
+        raise Error("TypeError: delimiter must be a 1-character string")
+    if len(dialect.quotechar) != 1:
+        raise Error("TypeError: quotechar must be a 1-character string")
+    if dialect.escapechar:
+        if len(dialect.escapechar) != 1:
+            raise Error("TypeError: escapechar must be a 1-character string")
+        if (
+            dialect.escapechar == dialect.delimiter
+            or dialect.escapechar == dialect.quotechar
+        ):
+            raise Error(
+                "TypeError: escapechar must not be delimiter or quotechar"
+            )
+    if dialect.quoting not in (
+        QUOTE_ALL,
+        QUOTE_MINIMAL,
+        QUOTE_NONNUMERIC,
+        QUOTE_NONE,
+        QUOTE_STRINGS,
+        QUOTE_NOTNULL,
+    ):
+        raise Error("TypeError: bad 'quoting' value")
+    if dialect.doublequote:
+        if dialect.escapechar in (dialect.delimiter, dialect.quotechar):
+            raise Error(
+                "TypeError: single-character escape sequence must be different"
+                " from delimiter and quotechar"
+            )
+    return True
