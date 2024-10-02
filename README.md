@@ -8,7 +8,7 @@ This software is in a early stage of development, using the Mojo nightly version
 
 ## Features
 
-- **CSV Reading**: Supports reading from and writing to CSV files with a familiar API.
+- **CSV Reading and Writing**: Supports reading from and writing to CSV files with a familiar API.
 - **Custom Delimiters**: Easily specify custom delimiters, quote characters, and line terminators.
 - **Data Validation**: Includes optional data validation during parsing.
 - **Compatibility**: API similar to Python's `csv` module for easy transition and minimal learning curve.
@@ -38,7 +38,6 @@ fn main():
 ## TODO
 
 - [ ] Iterations instead of loading the whole file into memory
-- [ ] CSV writing
 - [ ] Optimizations leveraging SIMD
 
 ## Contributing
