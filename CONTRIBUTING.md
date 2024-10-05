@@ -1,7 +1,13 @@
 # Contributing Guide
 
+## Install and upgrade Magic
+
+```bash
+magic update && magic install
+```
+
 ## How to build this package
 
 ```bash
-mojo package csv -o csv.mojopkg
+mojo package src/csv -o csv.mojopkg
 ``
