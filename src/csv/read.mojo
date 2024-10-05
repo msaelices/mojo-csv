@@ -1,4 +1,4 @@
-from memory import memcmp, memcpy, UnsafePointer
+from memory import memcmp, memcpy, Pointer, UnsafePointer
 
 from .dialects import (
     Dialect,
@@ -112,7 +112,7 @@ struct _ReaderIter[
 ](Sized):
     """Iterator for any random-access container"""
 
-    var reader_ref: Reference[reader, reader_lifetime]
+    var reader_ref: Pointer[reader, reader_lifetime]
     var pos: Int
     var field_pos: Int
     var quoted: Bool
@@ -126,7 +126,7 @@ struct _ReaderIter[
     var bytes_len: Int
 
     fn __init__(inout self, ref [reader_lifetime]reader: reader):
-        self.reader_ref = reader
+        self.reader_ref = Pointer.address_of(reader)
         self.pos = 0
         self.field_pos = 0
         self.quoted = False
