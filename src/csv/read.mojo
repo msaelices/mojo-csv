@@ -143,10 +143,10 @@ struct _ReaderIter[
     fn __next__(inout self: Self) raises -> List[String]:
         return self.next_row()
 
-    fn __len__(self) -> Int:
+    fn __hasmore__(self) -> Int:
         # This is the current way to imitate the StopIteration exception
         # TODO: Remove when the iterators are implemented and streaming is done
-        return self.bytes_len - self.pos
+        return (self.bytes_len - self.pos) > 0
 
     fn next_row(inout self) -> List[String]:
         var row = List[String]()
