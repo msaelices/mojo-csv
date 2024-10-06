@@ -109,7 +109,7 @@ alias QUOTE_IN_QUOTED_FIELD = 8
 struct _ReaderIter[
     reader_mutability: Bool, //,
     reader_lifetime: Lifetime[reader_mutability].type,
-](Sized):
+]:
     """Iterator for any random-access container"""
 
     var reader_ref: Pointer[reader, reader_lifetime]
