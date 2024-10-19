@@ -14,8 +14,8 @@ jobs:
           run: |
             curl -ssL https://magic.modular.com | bash
             source $HOME/.bash_profile
-            magic run mojo package csv -o csv.mojopkg
-        
+            magic run mojo package src/csv -o csv.mojopkg
+
         - name: Upload package as artifact
           uses: actions/upload-artifact@v4
           with:
