@@ -72,14 +72,14 @@ struct reader:
         # TODO: Implement streaming to prevent loading the entire file into memory
         self.content = csvfile.read()
 
-    fn __iter__(self: Self) raises -> _ReaderIter[__lifetime_of(self)]:
+    fn __iter__(self: Self) raises -> _ReaderIter[__origin_of(self)]:
         """
         Iterate through the CSV lines.
 
         Returns:
             Iterator.
         """
-        return _ReaderIter[__lifetime_of(self)](reader=self)
+        return _ReaderIter[__origin_of(self)](reader=self)
 
     fn __len__(self: Self) -> Int:
         """
@@ -108,7 +108,7 @@ alias QUOTE_IN_QUOTED_FIELD = 8
 
 struct _ReaderIter[
     reader_mutability: Bool, //,
-    reader_lifetime: Lifetime[reader_mutability].type,
+    reader_lifetime: Origin[reader_mutability].type,
 ]:
     """Iterator for any random-access container"""
 
