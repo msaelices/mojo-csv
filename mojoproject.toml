@@ -3,7 +3,7 @@ authors = ["Manuel Saelices <msaelices@gmail.com>"]
 channels = ["conda-forge", "https://conda.modular.com/max-nightly"]
 description = "CSV files that adheres closely to the Python standard library's csv module"
 name = "csv"
-platforms = ["linux-64"]
+platforms = ["linux-64", "osx-arm64"]
 version = "0.1.0"
 
 [tasks]
