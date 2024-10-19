@@ -19,3 +19,11 @@ To run the tests, execute the following command:
 ```bash
 ./scripts/run-tests.sh
 ```
+
+## Running the benchmarks
+
+To run the benchmarks, execute the following command:
+
+```bash
+./scripts/run-benchmarks.sh
+```
