@@ -3,11 +3,12 @@ from time import perf_counter_ns
 from csv import reader
 from python import Python, PythonObject
 
+from utils import Variant
+
+alias File = Variant[FileHandle, PythonObject]
 
 alias BenchFunc = fn (file: FileHandle) raises -> None
-alias PyBenchFunc = fn (
-    file: PythonObject, py_reader: PythonObject
-) raises -> None
+alias PyBenchFunc = fn (file: PythonObject) raises -> None
 
 
 fn mojo_csv_read(file: FileHandle) raises:
@@ -20,14 +21,33 @@ fn mojo_csv_read(file: FileHandle) raises:
     _ = file.seek(0)
 
 
-fn python_csv_read(file: PythonObject, py_reader: PythonObject) raises:
-    var csv_reader = py_reader(
+fn python_csv_read(file: PythonObject) raises:
+    py_csv = Python.import_module("csv")
+    var csv_reader = py_csv.reader(
         file, delimiter=",", quotechar='"', doublequote=True
     )
     i = 0
     for row in csv_reader:
         i += 1
     _ = file.seek(0)
+
+
+fn do_bench[function](file: File) -> Int:
+    for i in range(10):
+        if file.isa[FileHandle]():
+            function(file[FileHandle]())
+        else:
+            function(file[PythonObject]())
+    report = 0
+    for i in range(10):
+        start = perf_counter_ns()
+        if file.isa[FileHandle]():
+            function(file[FileHandle]())
+        else:
+            function(file[PythonObject]())
+        end = perf_counter_ns()
+        report = max(report, end - start)
+    return report
 
 
 fn run_bench[
@@ -39,34 +59,12 @@ fn run_bench[
         for i in range(100):
             f.write(str(i) + "," + str(i) + "," + str(i) + "\n")
 
-    py_csv = Python.import_module("csv")
-    # with Python.import_module('builtins').open(csv_file_path, "r") as file:
     file = Python.import_module("builtins").open(csv_file_path, "r")
-    # Warmup
-    for i in range(10):
-        function_python(file, py_csv.reader)
-    # Execute the function and measure the max runtime
-    report_python = 0
-    for i in range(10):
-        start = perf_counter_ns()
-        function_python(file, py_csv.reader)
-        end = perf_counter_ns()
-        duration = end - start
-        report_python = max(report_python, duration)
+    report_python = do_bench[function_python](file)
     file.close()
 
     with open(csv_file_path, "r") as file:
-        # Warmup
-        for i in range(10):
-            function_mojo(file)
-        # Execute the function and measure the maximum max runtime
-        report_mojo = 0
-        for i in range(10):
-            start = perf_counter_ns()
-            function_mojo(file)
-            end = perf_counter_ns()
-            duration = end - start
-            report_mojo = max(report_mojo, duration)
+        report_mojo = do_bench[function_mojo](file)
 
     if not quiet:
         print("Mojo runtime (ns): \t", report_mojo)
