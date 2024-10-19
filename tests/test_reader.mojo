@@ -1,7 +1,7 @@
 from csv import reader, Dialect
 from testing import assert_equal, assert_raises
 from pathlib import Path, _dir_of_current_file
-from .utils import assert_line_equal
+from test_utils import assert_line_equal
 
 
 def test_dialect():
